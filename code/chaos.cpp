@@ -32,13 +32,18 @@ int main()
 
 	//vector variables used to create 3 vertices ,position and 
 	//hold the last position 
-	sf::Vector2i a, b, c, d, e, z, position, lastPos;
+	sf::Vector2i a, b, c, z, position, lastPos;
+	//sf::Vector2i d,e;
 	int count = 0;
 
 
 	while (window.isOpen())
 	{
 		window.draw(text);
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			window.close();
+		}
 
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -74,19 +79,19 @@ int main()
 
 
 				}
+				//if (count == 3)
+				//{
+					//d.x = position.x;
+					//d.y = position.y;
+
+				//}
+				//if (count == 4)
+				//{
+					//e.x = position.x;
+					//e.y = position.y;
+
+				//}
 				if (count == 3)
-				{
-					d.x = position.x;
-					d.y = position.y;
-
-				}
-				if (count == 4)
-				{
-					e.x = position.x;
-					e.y = position.y;
-
-				}
-				if (count == 5)
 				{
 					//the last vertex  will be stored in the vector lastPos to use in the formula
 					lastPos.x = position.x;
@@ -104,18 +109,18 @@ int main()
 		}
 		//after initializing the requirements to create the triangle 
 		//the 4th count or more clicks will trigger the loop to start
-		if (count > 6)
+		if (count > 4)
 		{
 			//sets the color to white 
 			shape.setFillColor(sf::Color::White);
-			int lastRand = -1;
+			//int lastRand = -1;
 			//in this loop, the size is adjustable
 			for (size_t i = 0; i < 9999; i++)
 			{
 				//genRand grabs a random number from 0,1,2
-				int genRand = rand() % 5;
-				if (genRand != lastRand)
-				{
+				int genRand = rand() % 3;
+				//if (genRand != lastRand)
+				//{
 					if (genRand == 0)
 					{
 						//used the midpoint formula if genRand == 0
@@ -127,7 +132,7 @@ int main()
 						// using the midpoint to store it in the lastPos to use for further iterations
 						lastPos.x = z.x;
 						lastPos.y = z.y;
-						lastRand = genRand;
+						//lastRand = genRand;
 
 					}
 					if (genRand == 1)
@@ -141,7 +146,7 @@ int main()
 						// using the midpoint to store it in the lastPos to use for further iterations
 						lastPos.x = z.x;
 						lastPos.y = z.y;
-						lastRand = genRand;
+						//lastRand = genRand;
 					}
 					if (genRand == 2)
 					{
@@ -154,9 +159,9 @@ int main()
 						// using the midpoint to store it in the lastPos to use for further iterations
 						lastPos.x = z.x;
 						lastPos.y = z.y;
-						lastRand = genRand;
+						//lastRand = genRand;
 					}
-					if (genRand == 3)
+					/*if (genRand == 3)
 					{
 						//used the midpoint formula if genRand == 2
 						//x1+x2   y1+y2
@@ -182,7 +187,9 @@ int main()
 						lastPos.y = z.y;
 						lastRand = genRand;
 					}
+					
 				}
+				*/
 				//after genRand picks a vertex and sets the midpoint, the shape is set in that coordinates
 				shape.setPosition(z.x, z.y);
 
